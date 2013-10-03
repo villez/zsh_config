@@ -17,14 +17,16 @@ export LC_COLLATE=C
 # OS X specific configs below:
 #
 
-PATH="$PATH:$HOME/bin:/usr/local/sbin"; export PATH
+if [[ $PLATFORM_OSX -eq 1 ]]; then
+    PATH="$PATH:$HOME/bin:/usr/local/sbin"; export PATH
 
-# rbenv
-PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"; export PATH
-eval "$(rbenv init -)"
+    # rbenv
+    PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"; export PATH
+    eval "$(rbenv init -)"
 
-# Perlbrew
-source ~/perl5/perlbrew/etc/bashrc
+    # Perlbrew
+    source ~/perl5/perlbrew/etc/bashrc
 
-# SML-NJ
-PATH="/usr/local/Cellar/smlnj/110.75/libexec/bin:$PATH"; export PATH
+    # SML-NJ
+    PATH="/usr/local/Cellar/smlnj/110.75/libexec/bin:$PATH"; export PATH
+fi

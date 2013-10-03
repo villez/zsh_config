@@ -30,3 +30,7 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     # SML-NJ
     PATH="/usr/local/Cellar/smlnj/110.75/libexec/bin:$PATH"; export PATH
 fi
+
+if [[ $PLATFORM_LINUX -eq 1 ]]; then
+    PATH="$PATH:$HOME/bin/"
+fi

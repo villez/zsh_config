@@ -8,7 +8,7 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
-export LESS="-eXF"
+export LESS="-eXFR"
 
 export PAGER='less'
 export EDITOR='~/bin/emacsclient'

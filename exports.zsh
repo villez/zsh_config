@@ -3,7 +3,7 @@ export LANG='en_US.UTF-8'
 export LC_CTYPE='fi_FI.UTF-8'
 
 export CLICOLOR=1
-export LSCOLORS="Gxfxcxdxbxegedabagacad"
+export LSCOLORS="exfxcxdxcxegedabagexex"
 
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'

@@ -1,6 +1,6 @@
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[yellow]%}
+ZSH_THEME_GIT_PROMPT_PREFIX="$PR_BOLD_YELLOW
 ("
-ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX=")$RESET"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="*"
 ZSH_THEME_GIT_PROMPT_ADDED="+"
 ZSH_THEME_GIT_PROMPT_MODIFIED="*"
@@ -48,6 +48,4 @@ git_prompt_status() {
 }
 
 
-PROMPT='[%{$fg_bold[green]%}%n@%m:%{$reset_color%}%{$fg_bold[blue]%}${PWD/#$HOME/~}%{$reset_color%}]$(my_git_prompt_info)%{$reset_color%}%% '
-
-
+PROMPT='[$PR_BOLD_GREEN%n@%m:$RESET$PR_BOLD_BLUE${PWD/#$HOME/~}$RESET]$(my_git_prompt_info)$RESET%% '

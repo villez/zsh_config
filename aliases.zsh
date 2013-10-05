@@ -2,16 +2,17 @@
 alias ..='cd ..'
 alias ...='cd ../../'
 alias history='fc -l 1'
-alias ll='ls -laGFh'
-alias lld='ls -laGFhd */'
-alias llh='ls -laGFhd .*'
-alias lll='ls -laGFh | less'
+alias ll='ls -laGFh | less'
+alias lld='ls -laGFhd */ | less'
+alias llh='ls -laGFhd .* | less'
 alias md='mkdir -pv'
 alias q='exit'
 alias rake='noglob rake'  # allow task[param] argument format
+alias rc='~/bin/rbcal'
 alias rd='rmdir'
 alias rmf='rm -f'
 alias rmrf='rm -rf'
+alias sr='screen -D -R'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
 
@@ -29,7 +30,7 @@ cdl() {
 
 # list and count
 llc() {
-  ll $* | wc -l
+  ls -la $* | wc -l
 }
 
 # list only directories from given dir

@@ -17,9 +17,9 @@ alias treed='tree -d --charset=utf-16 -C'
 # handling the different color options between BSD/OSX vs GNU/Linux ls
 # an alternative to this mess would be to use the GNU coreutils ls
 # also on OS X
-if [ $PLATFORM_OSX -eq 1 ]; then
+if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias l='CLICOLOR_FORCE=1 ls -laGFh'
-elif [ $PLATFORM_LINUX -eq 1 ]; then
+elif [[ $PLATFORM_LINUX -eq 1 ]]; then
     alias l='ls -laFh --color=always'
 fi
 alias lld='l -d */ | less'

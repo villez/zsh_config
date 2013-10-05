@@ -2,7 +2,7 @@
 alias ..='cd ..'
 alias ...='cd ../../'
 alias history='fc -l 1'
-alias ll='ls -laGFh | less'
+alias l='ls -laGFh'
 alias lld='ls -laGFhd */ | less'
 alias llh='ls -laGFhd .* | less'
 alias md='mkdir -pv'
@@ -16,19 +16,39 @@ alias sr='screen -D -R'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
 
+# if no params or param a directory -> pipe to less
+# use the special environment variable CLICOLOR_FORCE to
+# make ls use colors when the output is non-terminal
+ll() {
+    # if there are parameters
+    if [ $# -gt 0 ]; then
+	# if a directory given
+	if [ -d $1 ]; then
+	    CLICOLOR_FORCE=1 l $* | less
+	# some params were given, but not a directory
+	else
+	    l $*
+	fi
+    # no params given
+    else
+	CLICOLOR_FORCE=1 l | less
+    fi
+}
+
 # create new directory and cd into it
 take() {
-  mkdir -p $1
-  cd $1
+    mkdir -p $1
+    cd $1
 }
 
 # cd into directory and list it
 cdl() {
-  cd $1
-  ll
+    cd $1
+    ll
 }
+    
 
-# list and count
+# count files
 llc() {
   ls -la $* | wc -l
 }
@@ -55,8 +75,3 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias psqlstart='/usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start'
     alias psqlstop='/usr/local/pgsql/bin/pg_ctl stop'
 fi
-
-
-
-
-

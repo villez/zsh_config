@@ -1,6 +1,8 @@
 # general command aliases
 alias ..='cd ..'
 alias ...='cd ../../'
+alias cd..='cd ..'
+alias cd...='cd ../../'
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
@@ -43,8 +45,6 @@ ll() {
     fi
 }
 
-
-
 # create new directory and cd into it
 take() {
     mkdir -p $1
@@ -57,7 +57,6 @@ cdl() {
     ll
 }
     
-
 # count files
 llc() {
   ls -la $* | wc -l
@@ -72,16 +71,14 @@ lldd() {
 
 # Rails related aliases
 alias be='bundle exec'
-alias rdb='rake db:migrate && rake db:test:prepare'
+alias rails='bundle exec rails'
+alias rdb='be rake db:migrate && be rake db:test:prepare'
 
 
-#
-# OS X specific configs
-
+# OS X specific aliases
 if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias ec='~/bin/emacsclient'
     alias blog_new_post='cd ~/octopress; bundle exec rake new_post; ec source/_posts/`date +%F`-new-post.markdown'
     alias blog_publish='cd ~/octopress; bundle exec rake generate; bundle exec rake deploy'
-    alias psqlstart='/usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start'
-    alias psqlstop='/usr/local/pgsql/bin/pg_ctl stop'
+    alias sus='pmset sleepnow'
 fi

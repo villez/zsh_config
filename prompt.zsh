@@ -48,4 +48,7 @@ git_prompt_status() {
 }
 
 
-PROMPT='[$PR_BOLD_GREEN%n@%m:%{$reset_color%}$PR_BOLD_BLUE${PWD/#$HOME/~}%{$reset_color%}]$(my_git_prompt_info)%% '
+PROMPT='[$PR_BOLD_GREEN%n@%m:%{$reset_color%}'           # user@host (green)
+PROMPT+='$PR_BOLD_BLUE${PWD/#$HOME/~}%{$reset_color%}]'  # working directory (blue)
+PROMPT+='$(my_git_prompt_info)'                          # git status on next line if relevant (yellow)
+PROMPT+='%% '                                            # trailing %

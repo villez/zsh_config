@@ -2,6 +2,9 @@
 export LANG='en_US.UTF-8'
 export LC_CTYPE='fi_FI.UTF-8'
 
+# configuring colors for ls; different format for BSD/OSX and GNU/Linux versions
+# the two versions are currently not 1:1 in all details but match for the most
+# important cases - directories, executables, symlinks and the like
 export CLICOLOR=1
 if [[ $PLATFORM_OSX -eq 1 ]]; then
     export LSCOLORS="exfxcxdxcxegedabagexex"
@@ -19,24 +22,20 @@ export EDITOR='~/bin/emacsclient'
 
 export LC_COLLATE=C
 
-#
-# OS X specific configs below:
-#
 
+# setting up the path
+# common: add ~/bin
+
+export PATH="$PATH:$HOME/bin"
+
+# OS X specific additions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
-    PATH="$PATH:$HOME/bin:/usr/local/sbin"; export PATH
+    export PATH="$PATH:/usr/local/sbin"
 
-    # rbenv
-    PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"; export PATH
+    # rbenv path + initialization
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
 
     # Perlbrew
     source ~/perl5/perlbrew/etc/bashrc
-
-    # SML-NJ
-    PATH="/usr/local/Cellar/smlnj/110.75/libexec/bin:$PATH"; export PATH
-fi
-
-if [[ $PLATFORM_LINUX -eq 1 ]]; then
-    PATH="$PATH:$HOME/bin/"
 fi

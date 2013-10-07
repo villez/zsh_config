@@ -4,6 +4,8 @@ source ~/.zsh/setopt.zsh
 source ~/.zsh/exports.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/completion.zsh
+source ~/.zsh/history-substring-search.zsh
+source ~/.zsh/keybindings.zsh
 source ~/.zsh/aliases.zsh
 source ~/.zsh/private.zsh
 source ~/.zsh/zsh_hooks.zsh

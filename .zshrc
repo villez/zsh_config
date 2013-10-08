@@ -7,6 +7,5 @@ source ~/.zsh/completion.zsh
 source ~/.zsh/history-substring-search.zsh
 source ~/.zsh/keybindings.zsh
 source ~/.zsh/aliases.zsh
-source ~/.zsh/private.zsh
 source ~/.zsh/zsh_hooks.zsh
-
+source ~/.zsh/private/private.zsh # not in repo!

@@ -64,8 +64,16 @@ git_prompt_status() {
 }
 
 
+if [[ $PLATFORM_OSX -eq 1 ]]; then
+    PROMPT='[$PR_BOLD_GREEN%n@%m:%{$reset_color%}'           # user@host (green)
+    PROMPT+='$PR_BOLD_BLUE${PWD/#$HOME/~}%{$reset_color%}]'  # working directory (blue)
+    PROMPT+='$(my_git_prompt_info)'                          # git status on next line (yellow)
+    PROMPT+='%% '                                            # trailing %
+fi
 
-PROMPT='[$PR_BOLD_GREEN%n@%m:%{$reset_color%}'           # user@host (green)
-PROMPT+='$PR_BOLD_BLUE${PWD/#$HOME/~}%{$reset_color%}]'  # working directory (blue)
-PROMPT+='$(my_git_prompt_info)'                          # git status on next line if relevant (yellow)
-PROMPT+='%% '                                            # trailing %
+if [[ $PLATFORM_LINUX -eq 1 ]]; then
+    PROMPT='[$PR_BOLD_CYAN%n@%m:%{$reset_color%}'           # user@host (green)
+    PROMPT+='$PR_BOLD_MAGENTA${PWD/#$HOME/~}%{$reset_color%}]'  # working directory (blue)
+    PROMPT+='$(my_git_prompt_info)'                          # git status on next line (yellow)
+    PROMPT+='%% '                                            # trailing %
+fi

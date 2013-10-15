@@ -27,8 +27,8 @@ fi
 alias lld='l -d */ | less'
 alias llh='l -d .* | less'
 
-# if no params given or param a directory -> pipe output less;
-# if a non-directory param given, no paging,
+# if no params given or param a directory -> pipe output to less;
+# if a non-directory param given, no paging
 ll() {
     # if there are parameters
     if [ $# -gt 0 ]; then
@@ -56,7 +56,16 @@ cdl() {
     cd $1
     ll
 }
-    
+
+# cd into a given directory under ~ or ~/src/
+# unfortunately completion doesn't work with this; need to investigate a solution
+cdh() {
+    cd ~/$1
+}
+cds() {
+    cd ~/src/$1
+}
+
 # count files
 llc() {
   ls -la $* | wc -l

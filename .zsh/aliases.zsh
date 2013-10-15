@@ -51,6 +51,13 @@ take() {
     cd $1
 }
 
+# create a new directory, cd into it and initialize
+# an empty git repo
+takeg() {
+    take $1
+    git init
+}
+
 # cd into directory and list it
 cdl() {
     cd $1

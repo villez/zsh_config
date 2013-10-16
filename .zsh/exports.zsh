@@ -28,13 +28,14 @@ export LC_COLLATE=C
 
 export PATH="$PATH:$HOME/bin"
 
+# rbenv path + initialization
+export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+eval "$(rbenv init -)"
+
+
 # OS X specific additions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
     export PATH="$PATH:/usr/local/sbin"
-
-    # rbenv path + initialization
-    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-    eval "$(rbenv init -)"
 
     # Perlbrew
     source ~/perl5/perlbrew/etc/bashrc

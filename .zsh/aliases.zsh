@@ -87,9 +87,10 @@ lldd() {
 
 # Rails related aliases
 alias be='bundle exec'
+alias bi='bundle install'
+alias bu='bundle update'
 alias rails='bundle exec rails'
 alias rdb='be rake db:migrate && be rake db:test:prepare'
-
 
 # OS X specific aliases
 if [[ $PLATFORM_OSX -eq 1 ]]; then

@@ -94,7 +94,6 @@ alias rdb='be rake db:migrate && be rake db:test:prepare'
 
 # OS X specific aliases
 if [[ $PLATFORM_OSX -eq 1 ]]; then
-    alias ec='~/bin/emacsclient'
     alias blog_new_post='cd ~/octopress; bundle exec rake new_post; ec -n source/_posts/`date +%F`-new-post.markdown'
     alias blog_publish='cd ~/octopress; bundle exec rake generate; bundle exec rake deploy'
     alias bpn='blog_new_post'

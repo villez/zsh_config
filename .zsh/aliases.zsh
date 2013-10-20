@@ -92,11 +92,41 @@ alias bu='bundle update'
 alias rails='bundle exec rails'
 alias rdb='be rake db:migrate && be rake db:test:prepare'
 
-# OS X specific aliases
+# OS X specific aliases and functions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
-    alias blog_new_post='cd ~/octopress; bundle exec rake new_post; ec -n source/_posts/`date +%F`-new-post.markdown'
-    alias blog_publish='cd ~/octopress; bundle exec rake generate; bundle exec rake deploy'
-    alias bpn='blog_new_post'
-    alias bpp='blog_publish'
-    alias sus='pmset sleepnow'
+    alias zzz='pmset sleepnow'
+
+    # PostgreSQL
+    alias pg_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
+    alias pg_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
+    alias pg_restart='pg_stop; pg_start'
+
+    # Octopress: create a new post with given title, if any, and open it using
+    # the "ec" macs/emacsclient wrapper
+    bpn() {
+        cd ~/octopress
+        local POST
+        if [ -n "$1" ]; then
+            POST="$(noglob bundle exec rake new_post[$1] | cut -d' ' -f 4)"
+        else
+            POST="$(bundle exec rake new_post | cut -d' ' -f 4)"
+        fi
+        ec -n $POST
+    }
+    alias bnp='bpn'
+    alias bpp='cd ~/octopress; bundle exec rake generate; bundle exec rake deploy'
+
+
+    # open a  Terminal.app window much larger than my default
+    bigterm() {
+        osascript -e 'tell application "Terminal" to do script'
+        osascript -e 'tell application "Terminal" to set bounds of the front window to {0, 20, 1000, 830}'
+    }
+
+    # open a Terminal.app window smaller than my default
+    smallterm() {
+        osascript -e 'tell application "Terminal" to do script'
+        osascript -e 'tell application "Terminal" to set bounds of the front window to {0, 20, 585, 410}'
+    }
+
 fi

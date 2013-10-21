@@ -3,6 +3,8 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias cd..='cd ..'
 alias cd...='cd ../../'
+alias a+x='chomd a+x'
+alias a-x='chmod a-x'
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
@@ -91,6 +93,9 @@ alias bi='bundle install'
 alias bu='bundle update'
 alias rails='bundle exec rails'
 alias rdb='be rake db:migrate && be rake db:test:prepare'
+alias rco='be rails console'
+alias rsv='be rails server'
+
 
 # OS X specific aliases and functions
 if [[ $PLATFORM_OSX -eq 1 ]]; then

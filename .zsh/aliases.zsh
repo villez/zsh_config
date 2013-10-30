@@ -8,7 +8,6 @@ alias a-x='chmod a-x'
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
-alias rake='noglob rake'  # allow task[param] argument format
 alias rc='~/bin/rbcal'
 alias rd='rmdir'
 alias rmf='rm -f'
@@ -87,13 +86,44 @@ lldd() {
   cd -
 }
 
-# Rails related aliases
+# Rails related aliases & functions
+
+# make a wrapper for commands that should be run either as
+#  - binstubbed version (./bin/command)
+#  - bundle exec'd version
+#  - plain version
+# in that priority order
+
+# note: noglob used as a hack for rake, as zsh globbing clashes
+# with rake's task[params] command line argument format
+
+binstub_or_bundle_cmds=(spec rspec rails) # add more as becomes relevant
+
+run_binstub_or_bundle_exec() {
+    local cmdname=$1
+    shift
+    if [ -x ./bin/$cmdname ]; then
+        noglob bin/$cmdname $@
+    elif [ -e ./Gemfile ]; then
+        noglob bundle exec $cmdname $@
+    else
+        noglob $cmdname $@
+    fi
+}
+
+for command in $binstub_or_bundle_cmds
+do
+    alias $command="run_binstub_or_bundle_exec $command"
+done
+
 alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
-alias rdb='be rake db:migrate && be rake db:test:prepare'
-alias rco='be rails console'
-alias rsv='be rails server'
+
+alias rlc='rails console'
+alias rlg='rails generate'
+alias rls='rails server'
+alias rdb='rake db:migrate && rake db:test:prepare'
 
 
 # OS X specific aliases and functions

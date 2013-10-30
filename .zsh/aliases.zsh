@@ -67,7 +67,7 @@ cdl() {
 }
 
 # cd into a given directory under ~ or ~/src/
-# unfortunately completion doesn't work with this; need to investigate a solution
+# note: completion for these defined in completion.zsh
 cdh() {
     cd ~/$1
 }
@@ -91,7 +91,6 @@ lldd() {
 alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
-alias rails='bundle exec rails'
 alias rdb='be rake db:migrate && be rake db:test:prepare'
 alias rco='be rails console'
 alias rsv='be rails server'

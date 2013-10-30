@@ -1,7 +1,6 @@
-source ~/.zsh/platform_check.zsh
-source ~/.zsh/colors.zsh
-source ~/.zsh/setopt.zsh
 source ~/.zsh/exports.zsh
+source ~/.zsh/setopt.zsh
+source ~/.zsh/colors.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/completion.zsh
 source ~/.zsh/history-substring-search.zsh

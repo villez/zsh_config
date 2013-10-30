@@ -98,6 +98,7 @@ alias rsv='be rails server'
 
 # OS X specific aliases and functions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
+    alias batterycheck='ioreg -l -w0 | grep Capacity'
     alias zzz='pmset sleepnow'
 
     # PostgreSQL
@@ -106,7 +107,7 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias pg_restart='pg_stop; pg_start'
 
     # Octopress: create a new post with given title, if any, and open it using
-    # the "ec" macs/emacsclient wrapper
+    # the "ec" emacsclient wrapper
     bpn() {
         cd ~/octopress
         local POST
@@ -121,7 +122,7 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias bpp='cd ~/octopress; bundle exec rake generate; bundle exec rake deploy'
 
 
-    # open a  Terminal.app window much larger than my default
+    # open a Terminal.app window much larger than my default
     bigterm() {
         osascript -e 'tell application "Terminal" to do script'
         osascript -e 'tell application "Terminal" to set bounds of the front window to {0, 20, 1000, 830}'

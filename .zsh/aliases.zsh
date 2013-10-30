@@ -98,7 +98,7 @@ alias rsv='be rails server'
 
 # OS X specific aliases and functions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
-    alias batterycheck='ioreg -l -w0 | grep Capacity'
+    alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'
     alias zzz='pmset sleepnow'
 
     # PostgreSQL

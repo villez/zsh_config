@@ -10,6 +10,7 @@ alias md='mkdir -pv'
 alias q='exit'
 alias rc='~/bin/rbcal'
 alias rd='rmdir'
+alias realias='source ~/.zsh/aliases.zsh'
 alias rmf='rm -f'
 alias rmrf='rm -rf'
 alias sr='screen -D -R'
@@ -97,7 +98,7 @@ lldd() {
 # note: noglob used as a hack for rake, as zsh globbing clashes
 # with rake's task[params] command line argument format
 
-binstub_or_bundle_cmds=(spec rspec rails rake) # add more as becomes relevant
+binstub_or_bundle_cmds=(spec rspec rails rake guard) # add more as becomes relevant
 
 run_binstub_or_bundle_exec() {
     local cmdname=$1

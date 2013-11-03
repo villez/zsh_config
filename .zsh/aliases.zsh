@@ -121,6 +121,8 @@ alias be='bundle exec'
 alias bi='bundle install'
 alias bu='bundle update'
 
+alias cov='rspec spec/ && open coverage/index.html'
+
 alias rlc='rails console'
 alias rlg='rails generate'
 alias rls='rails server'

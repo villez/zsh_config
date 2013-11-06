@@ -152,7 +152,7 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
         ec -n $POST
     }
     alias bnp='bpn'
-    alias bpp='cd ~/octopress; bundle exec rake generate; bundle exec rake deploy'
+    alias bpp='cd ~/octopress && bundle exec rake generate && bundle exec rake deploy && git add . && git commit -m "new post `date`" && git push origin master && cd'
 
 
     # open a Terminal.app window much larger than my default

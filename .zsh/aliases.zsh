@@ -14,6 +14,9 @@ alias realias='source ~/.zsh/aliases.zsh'
 alias rmf='rm -f'
 alias rmrf='rm -rf'
 alias sr='screen -D -R'
+alias tarc='tar cvzf'
+alias tart='tar tvzf'
+alias tarx='tar xvzf'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
 
@@ -85,6 +88,11 @@ lldd() {
   cd $1
   lld
   cd -
+}
+
+# add a date to .rbcal
+rbcal-add() {
+    echo $* >> ~/.rbcal
 }
 
 # Rails related aliases & functions

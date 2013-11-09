@@ -5,6 +5,7 @@ alias cd..='cd ..'
 alias cd...='cd ../../'
 alias a+x='chmod a+x'
 alias a-x='chmod a-x'
+alias ealias='ec ~/.zsh/aliases.zsh'
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
@@ -94,6 +95,33 @@ lldd() {
 rbcal-add() {
     echo $* >> ~/.rbcal
 }
+
+
+# Git related aliases and functions
+
+g() {
+    if [[ $# > 0 ]]; then
+        git $@
+    else
+        git status
+    fi
+}
+
+alias ga='git add .'
+alias gc='git commit'
+alias gcl='git clone'
+alias gca='git commit -a'
+alias gcam='git commit -a -m'
+alias gcm='git commit -m'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gl='git ls3'  # defined in .gitconfig
+alias gp='git push'
+alias gpgh='git push github'
+alias gph='git push heroku'
+alias gpl='git pull'
+alias gs='git status'
+
 
 # Rails related aliases & functions
 

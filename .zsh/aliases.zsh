@@ -107,19 +107,28 @@ g() {
     fi
 }
 
-alias ga='git add .'
+alias ga='git add'
+alias gaa='git add --all .'
+alias gap='git add -p'
+alias gb='git branch'
+alias gbd='git branch -d'
 alias gc='git commit'
-alias gcl='git clone'
 alias gca='git commit -a'
 alias gcam='git commit -a -m'
 alias gcm='git commit -m'
+alias gcl='git clone'
 alias gco='git checkout'
 alias gcob='git checkout -b'
-alias gl='git ls3'  # defined in .gitconfig
+alias gl='git ls3'  # ls3 defined in .gitconfig
 alias gp='git push'
+alias gpo='git push -u origin master'
 alias gpgh='git push github'
 alias gph='git push heroku'
 alias gpl='git pull'
+alias gr='git remote'
+alias gra='git remote add'
+alias gru='git remote update'
+alias grv='git remote -v'
 alias gs='git status'
 
 

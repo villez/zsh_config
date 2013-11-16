@@ -179,6 +179,9 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'
     alias zzz='pmset sleepnow'
 
+    # Qt Creator
+    alias qtc='open ~/Qt5.1.1/Qt\ Creator.app'
+
     # PostgreSQL
     alias pg_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'

@@ -119,6 +119,7 @@ alias gcm='git commit -m'
 alias gcl='git clone'
 alias gco='git checkout'
 alias gcob='git checkout -b'
+alias gcof='git checkout -f'
 alias gl='git ls3'  # ls3 defined in .gitconfig
 alias gp='git push'
 alias gpo='git push -u origin master'
@@ -127,9 +128,16 @@ alias gph='git push heroku'
 alias gpl='git pull'
 alias gr='git remote'
 alias gra='git remote add'
+alias grr='git remote rm'
 alias gru='git remote update'
 alias grv='git remote -v'
+alias grh='reset HEAD~1'
+alias grhh='reset --hard HEAD~1'
+alias grsh='reset --soft HEAD~1'
 alias gs='git status'
+alias gu='git reset HEAD --'
+alias gx='git clean -xdf'
+
 
 
 # Rails related aliases & functions

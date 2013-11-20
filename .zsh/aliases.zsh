@@ -192,6 +192,7 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias pg_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_restart='pg_stop; pg_start'
+    alias pgl='psql --list'
 
     # Octopress: create a new post with given title, if any, and open it using
     # the "ec" emacsclient wrapper

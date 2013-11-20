@@ -134,7 +134,7 @@ alias gru='git remote update'
 alias grv='git remote -v'
 alias grh='git reset --hard'
 alias gus='git reset HEAD --'
-alias gx='git reset --hard && git clean -xdf'
+alias gx='git reset --hard && git clean -df'
 
 
 

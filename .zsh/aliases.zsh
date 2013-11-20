@@ -121,6 +121,7 @@ alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcof='git checkout -f'
 alias gl='git ls3'  # ls3 defined in .gitconfig
+alias gm='git merge'
 alias gp='git push'
 alias gpo='git push -u origin master'
 alias gpgh='git push github'
@@ -131,12 +132,9 @@ alias gra='git remote add'
 alias grr='git remote rm'
 alias gru='git remote update'
 alias grv='git remote -v'
-alias grh='git reset HEAD~1'
-alias grhh='git reset --hard HEAD~1'
-alias grsh='git reset --soft HEAD~1'
-alias gs='git status'
-alias gu='git reset HEAD --'
-alias gx='git clean -xdf'
+alias grh='git reset --hard'
+alias gus='git reset HEAD --'
+alias gx='git reset --hard && git clean -xdf'
 
 
 

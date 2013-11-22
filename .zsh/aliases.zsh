@@ -180,6 +180,23 @@ alias rls='rails server'
 alias rdb='rake db:migrate && rake db:test:prepare'
 
 
+# npm related aliases
+alias ni='npm install -g'
+alias nl='npm ls'
+alias ns='npm search'
+alias nu='npm update -g'
+alias nuu='npm update -g npm'
+
+
+# Homebrew related aliases
+alias bri='brew install'
+alias brin='brew info'
+alias brl='brew list'
+alias brs='brew search'
+alias bru='brew upgrade'
+alias bruu='brew update'
+
+
 # OS X specific aliases and functions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'

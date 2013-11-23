@@ -5,13 +5,15 @@ alias cd..='cd ..'
 alias cd...='cd ../../'
 alias a+x='chmod a+x'
 alias a-x='chmod a-x'
-alias ealias='ec ~/.zsh/aliases.zsh'
+alias du0='du -h -d0'
+alias du1='du -h -d1'
+alias ealias='ec $ZALIAS'
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
 alias rc='~/bin/rbcal'
 alias rd='rmdir'
-alias realias='source ~/.zsh/aliases.zsh'
+alias realias='source $ZALIAS'
 alias rmf='rm -f'
 alias rmrf='rm -rf'
 alias sr='screen -D -R'
@@ -20,7 +22,6 @@ alias tart='tar tvzf'
 alias tarx='tar xvzf'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
-
 
 # handling the different color options between BSD/OSX vs GNU/Linux ls
 # an alternative to this mess would be to use the GNU coreutils ls
@@ -97,7 +98,9 @@ rbcal-add() {
 }
 
 
+#
 # Git related aliases and functions
+#
 
 g() {
     if [[ $# > 0 ]]; then
@@ -146,7 +149,7 @@ alias gx='git reset --hard && git clean -df'
 #  - plain version
 # in that priority order
 
-# note: noglob used as a hack for rake, as zsh globbing clashes
+# note: noglob used because of rake, as zsh globbing clashes
 # with rake's task[params] command line argument format
 
 binstub_or_bundle_cmds=(spec rspec rails rake guard) # add more as becomes relevant
@@ -188,17 +191,18 @@ alias nu='npm update -g'
 alias nuu='npm update -g npm'
 
 
-# Homebrew related aliases
-alias bri='brew install'
-alias brin='brew info'
-alias brl='brew list'
-alias brs='brew search'
-alias bru='brew upgrade'
-alias bruu='brew update'
-
-
 # OS X specific aliases and functions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
+    # Homebrew related aliases
+    alias bri='brew install'
+    alias brin='brew info'
+    alias brl='brew list'
+    alias brs='brew search'
+    alias bru='brew upgrade'
+    alias bruu='brew update'
+
+    alias df='df -H -T hfs,smbfs'
+    
     alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'
     alias zzz='pmset sleepnow'
 
@@ -239,4 +243,9 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
         osascript -e 'tell application "Terminal" to set bounds of the front window to {0, 20, 585, 410}'
     }
 
+fi
+
+# Linux specific aliases
+if [[ $PLATFORM_LINUX -eq 1 ]]; then
+    alias df='df -H -x tmpfs -x devtmpfs'
 fi

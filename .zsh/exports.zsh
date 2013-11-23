@@ -7,6 +7,9 @@ elif [[ $(uname) = 'Darwin' ]]; then
     export PLATFORM_OSX=1
 fi
 
+export ZDOTDIR='~/.zsh'
+export ZALIAS=$ZDOTDIR/aliases.zsh
+
 # locale settings
 export LANG='en_US.UTF-8'
 export LC_CTYPE='fi_FI.UTF-8'

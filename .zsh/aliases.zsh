@@ -190,6 +190,10 @@ alias ns='npm search'
 alias nu='npm update -g'
 alias nuu='npm update -g npm'
 
+# PostgreSQL
+alias pg='psql'
+alias pgl='psql --list'
+
 
 # OS X specific aliases and functions
 if [[ $PLATFORM_OSX -eq 1 ]]; then
@@ -213,7 +217,6 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias pg_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_restart='pg_stop; pg_start'
-    alias pgl='psql --list'
 
     # Octopress: create a new post with given title, if any, and open it using
     # the "ec" emacsclient wrapper
@@ -248,4 +251,17 @@ fi
 # Linux specific aliases
 if [[ $PLATFORM_LINUX -eq 1 ]]; then
     alias df='df -H -x tmpfs -x devtmpfs'
+
+    # PostgreSQL
+    alias pg_start='sudo systemctl start postgresql-9.3'
+    alias pg_stop='sudo systemctl stop postgresql-9.3'
+    alias pg_restart='sudo systemctl restart postgresql-9.3'
+
+    # Fedora services
+    alias sc='systemctl'
+    alias scstart='sudo systemctl start'
+    alias scstop='sudo systemctl stop'
+    alias screload='sudo systemctl reload'
+    alias screstart='sudo systemctl restart'
+
 fi

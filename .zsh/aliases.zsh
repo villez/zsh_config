@@ -246,6 +246,12 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
         osascript -e 'tell application "Terminal" to set bounds of the front window to {0, 20, 585, 410}'
     }
 
+    # open a new terminal window and run the given command in it
+    # example: $ nw ssh -l foo 192.168.0.100
+    nw() {
+        osascript -e 'on run argv' -e 'tell application "Terminal" to do script argv' -e 'end run' "$*"
+    }
+
 fi
 
 # Linux specific aliases

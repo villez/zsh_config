@@ -45,8 +45,11 @@ export LESS="-eXFR"
 export PATH="$PATH:$HOME/bin"
 
 # rbenv path + initialization
-export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-eval "$(rbenv init -)"
+
+if [ -d "$HOME/.rbenv" ]; then
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+    eval "$(rbenv init -)"
+fi
 
 
 # OS X specific additions

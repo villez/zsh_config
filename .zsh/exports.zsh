@@ -1,11 +1,8 @@
 # check which platform we're on; used for some conditional
 # configurations - although trying to minimize those
 
-if [[ $(uname) = 'Linux' ]]; then
-    export PLATFORM_LINUX=1
-elif [[ $(uname) = 'Darwin' ]]; then
-    export PLATFORM_OSX=1
-fi
+on_osx() { [[ $(uname) = 'Darwin' ]] }
+on_linux() { [[ $(uname) = 'Linux' ]] }
 
 export ZDOTDIR='~/.zsh'
 export ZALIAS=$ZDOTDIR/aliases.zsh
@@ -18,7 +15,7 @@ export LC_COLLATE=C
 # configuring colors for ls; different format for BSD/OSX and GNU/Linux versions
 # the two configs here are currently not 1:1 in all details but match well enough
 # for the most important cases - normal files, directories, executables, symlinks
-if [[ $PLATFORM_OSX -eq 1 ]]; then
+if on_osx; then
     export CLICOLOR=1
     export LSCOLORS="exfxcxdxcxegedabagexex"
 fi
@@ -53,7 +50,7 @@ fi
 
 
 # OS X specific additions
-if [[ $PLATFORM_OSX -eq 1 ]]; then
+if on_osx; then
     export PATH="$PATH:/usr/local/sbin"
 
     # Perlbrew

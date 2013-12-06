@@ -24,18 +24,17 @@ alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
 
 # handling the different color options between BSD/OSX vs GNU/Linux ls
-# an alternative to this mess would be to use the GNU coreutils ls
-# also on OS X
-if [[ $PLATFORM_OSX -eq 1 ]]; then
+if on_osx; then
     alias l='CLICOLOR_FORCE=1 ls -laGFh'
-elif [[ $PLATFORM_LINUX -eq 1 ]]; then
+else
     alias l='ls -laFh --color=always'
 fi
+
 alias lld='l -d */ | less'
 alias llh='l -d .* | less'
 
-# if no params given or param a directory -> pipe output to less;
-# if a non-directory param given, no paging
+# if no params given or param a directory -> pipe ls output to less;
+# if a non-directory param given, no paging 
 ll() {
     # if there are parameters
     if [ $# -gt 0 ]; then
@@ -195,8 +194,10 @@ alias pg='psql'
 alias pgl='psql --list'
 
 
+#
 # OS X specific aliases and functions
-if [[ $PLATFORM_OSX -eq 1 ]]; then
+#
+if on_osx; then
     # Homebrew related aliases
     alias bri='brew install'
     alias brin='brew info'
@@ -206,34 +207,35 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
     alias bruu='brew update'
 
     alias df='df -H -T hfs,smbfs'
-    
+
     alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'
     alias zzz='pmset sleepnow'
 
+    
     # Qt Creator
     alias qtc='open ~/Qt5.1.1/Qt\ Creator.app'
 
+    
     # PostgreSQL
     alias pg_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_restart='pg_stop; pg_start'
 
+    
     # Octopress: create a new post with given title, if any, and open it using
     # the "ec" emacsclient wrapper
     bpn() {
         cd ~/octopress
         local POST
-        if [ -n "$1" ]; then
-            POST="$(noglob bundle exec rake new_post[$1] | cut -d' ' -f 4)"
-        else
-            POST="$(bundle exec rake new_post | cut -d' ' -f 4)"
-        fi
+        POST="$(noglob bundle exec rake new_post[$1] | cut -d' ' -f 4)"
         ec -n $POST
     }
+
     alias bnp='bpn'
     alias bpp='cd ~/octopress && bundle exec rake generate && bundle exec rake deploy && git add . && git commit -m "new post `date`" && git push origin master && cd'
 
 
+    # a couple of Terminal.app aliases using AppleScript
     # open a Terminal.app window much larger than my default
     bigterm() {
         osascript -e 'tell application "Terminal" to do script'
@@ -255,7 +257,7 @@ if [[ $PLATFORM_OSX -eq 1 ]]; then
 fi
 
 # Linux specific aliases
-if [[ $PLATFORM_LINUX -eq 1 ]]; then
+if on_linux; then
     alias df='df -H -x tmpfs -x devtmpfs'
 
     # PostgreSQL
@@ -269,5 +271,7 @@ if [[ $PLATFORM_LINUX -eq 1 ]]; then
     alias scstop='sudo systemctl stop'
     alias screload='sudo systemctl reload'
     alias screstart='sudo systemctl restart'
+
+    alias yu='sudo yum update'
 
 fi

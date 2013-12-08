@@ -33,6 +33,8 @@ fi
 
 alias lld='l -d */ | less'
 alias llh='l -d .* | less'
+alias lls='l -S | less'
+alias llt='l -t | less'
 
 # if no params given or param a directory -> pipe ls output to less;
 # if a non-directory param given, no paging 

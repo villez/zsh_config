@@ -1,6 +1,3 @@
-ZSH_THEME_GIT_PROMPT_PREFIX="$PR_BOLD_YELLOW
-("
-ZSH_THEME_GIT_PROMPT_SUFFIX=")%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="*"
 ZSH_THEME_GIT_PROMPT_ADDED="+"
 ZSH_THEME_GIT_PROMPT_MODIFIED="*"
@@ -14,7 +11,7 @@ my_git_prompt_info() {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
     GIT_STATUS=$(git_prompt_status)
     [[ -n $GIT_STATUS ]] && GIT_STATUS=" $GIT_STATUS"
-    echo "$ZSH_THEME_GIT_PROMPT_PREFIX${ref#refs/heads/}$GIT_STATUS$ZSH_THEME_GIT_PROMPT_SUFFIX"
+    echo "\n(${ref#refs/heads/}$GIT_STATUS)"
 }
 
 git_prompt_status() {
@@ -64,17 +61,21 @@ git_prompt_status() {
 }
 
 
-# set different prompt colors based on OS to give a bit of quick
-# visual indication which machine each terminal is currently connected to
+# setting the prompt with coloring
+# use a bit different colors based on OS to give a quick
+# visual indication which machine each terminal is connected to
 
 if on_osx; then
-    PROMPT='[$PR_BOLD_GREEN%n@%m:%{$reset_color%}'             # user@host (green)
-    PROMPT+='$PR_BOLD_BLUE${PWD/#$HOME/~}%{$reset_color%}]'    # working directory (blue)
-    PROMPT+='$(my_git_prompt_info)'                            # git status on next line (yellow)
-    PROMPT+='%% '                                              # trailing %
+    usercolor=$PR_BOLD_GREEN
+    dircolor=$PR_BOLD_BLUE
+    gitcolor=$PR_BOLD_YELLOW
 else
-    PROMPT='[$PR_BOLD_CYAN%n@%m:%{$reset_color%}'              # user@host (cyan)
-    PROMPT+='$PR_BOLD_MAGENTA${PWD/#$HOME/~}%{$reset_color%}]' # working directory (magenta)
-    PROMPT+='$(my_git_prompt_info)'                            # git status on next line (yellow)
-    PROMPT+='%% '                                              # trailing %
+    usercolor=$PR_BOLD_CYAN
+    dircolor=$PR_BOLD_MAGENTA
+    gitcolor=$PR_BOLD_YELLOW
 fi
+
+PROMPT='[$usercolor%n@%m:%{$reset_color%}'                  # user@host
+PROMPT+='$dircolor${PWD/#$HOME/~}%{$reset_color%}]'         # working directory
+PROMPT+='$gitcolor$(my_git_prompt_info)%{$reset_color%}'    # git status
+PROMPT+='%% '                                               # trailing %

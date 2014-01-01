@@ -225,6 +225,10 @@ if on_osx; then
     alias pg_restart='pg_stop; pg_start'
 
     
+    # vlc
+    alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
+
+    
     # Octopress: create a new post with given title, if any, and open it using
     # the "ec" emacsclient wrapper
     bpn() {

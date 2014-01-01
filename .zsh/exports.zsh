@@ -7,6 +7,12 @@ on_linux() { [[ $(uname) = 'Linux' ]] }
 export ZDOTDIR='~/.zsh'
 export ZALIAS=$ZDOTDIR/aliases.zsh
 
+# history
+export HISTSIZE=10000
+export SAVEHIST=10000
+export HISTFILE=~/.zsh_history
+
+
 # locale settings
 export LANG='en_US.UTF-8'
 export LC_CTYPE='fi_FI.UTF-8'

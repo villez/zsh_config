@@ -186,10 +186,12 @@ alias rdb='rake db:migrate && rake db:test:prepare'
 
 
 # npm related aliases
-alias ni='npm install -g'
+alias ni='npm install'
+alias nig='npm install -g'
 alias nl='npm ls'
 alias ns='npm search'
-alias nu='npm update -g'
+alias nu='npm update'
+alias nug='npm update -g'
 alias nuu='npm update -g npm'
 
 # PostgreSQL

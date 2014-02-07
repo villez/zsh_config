@@ -84,14 +84,27 @@ cds() {
 
 # count files
 llc() {
-  ls -la $* | wc -l
+    ls -la $* | wc -l
 }
 
 # list only directories from given dir
 lldd() {
-  cd $1
-  lld
-  cd -
+    cd $1
+    lld
+    cd -
+}
+
+# Find the path to the first argument using which, then less it.
+# 'which' only searches the PATH for executables, so this is
+# mainly useful for viewing scripts without typing the full dirname
+# Note: be careful with binary files and less options...
+lw() {
+    local f=$(which $1)
+    if [ -e $f ]; then
+        less $f
+    else
+        echo "$1 not found"
+    fi
 }
 
 # add a date to .rbcal

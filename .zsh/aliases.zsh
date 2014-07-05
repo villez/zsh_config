@@ -227,8 +227,8 @@ if on_osx; then
     alias df='df -H -T hfs,smbfs'
 
     alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'
-    alias wifioff='networksetup -setairportpower en1 off'  # en1 is the Wi-Fi device on my MBP, but YMMV;
-    alias wifion='networksetup -setairportpower en1 on'    # see networksetup -lisetnetworkserviceorder
+    alias wifioff='networksetup -setairportpower en0 off'  # en0 is the Wi-Fi device on current MBP
+    alias wifion='networksetup -setairportpower en0 on'    # see networksetup -lisetnetworkserviceorder
     alias wifirestart='wifioff; wifion'
     alias zzz='pmset sleepnow'
 

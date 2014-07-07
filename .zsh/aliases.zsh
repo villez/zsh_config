@@ -216,6 +216,9 @@ alias pgl='psql --list'
 # OS X specific aliases and functions
 #
 if on_osx; then
+    # configure df to use human readable units and only show certain filesystem types
+    alias df='df -H -T hfs,smbfs'
+
     # Homebrew related aliases
     alias bri='brew install'
     alias brin='brew info'
@@ -224,8 +227,7 @@ if on_osx; then
     alias bru='brew upgrade'
     alias bruu='brew update'
 
-    alias df='df -H -T hfs,smbfs'
-
+    # Macbook and OS X low level stuff, may change with hardware/OS versions
     alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'
     alias wifioff='networksetup -setairportpower en0 off'  # en0 is the Wi-Fi device on current MBP
     alias wifion='networksetup -setairportpower en0 on'    # see networksetup -lisetnetworkserviceorder
@@ -234,7 +236,7 @@ if on_osx; then
 
     
     # Qt Creator
-    alias qtc='open ~/Qt5.1.1/Qt\ Creator.app'
+    alias qtc='open ~/Qt5Latest/Qt\ Creator.app'
 
     
     # PostgreSQL
@@ -283,6 +285,7 @@ fi
 
 # Linux specific aliases
 if on_linux; then
+    # configure df to use human readable units and only show certain filesystem types
     alias df='df -H -x tmpfs -x devtmpfs'
 
     if on_fedora; then

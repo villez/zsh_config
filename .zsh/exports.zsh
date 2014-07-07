@@ -3,6 +3,8 @@
 
 on_osx() { [[ $(uname) = 'Darwin' ]] }
 on_linux() { [[ $(uname) = 'Linux' ]] }
+on_fedora() { [[ $(lsb_release -si) = 'Fedora' ]] }
+on_ubuntu() { [[ $(lsb_release -si) = 'Ubuntu' ]] }
 
 export ZDOTDIR='~/.zsh'
 export ZALIAS=$ZDOTDIR/aliases.zsh

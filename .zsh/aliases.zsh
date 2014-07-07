@@ -285,18 +285,22 @@ fi
 if on_linux; then
     alias df='df -H -x tmpfs -x devtmpfs'
 
-    # PostgreSQL
-    alias pg_start='sudo systemctl start postgresql-9.3'
-    alias pg_stop='sudo systemctl stop postgresql-9.3'
-    alias pg_restart='sudo systemctl restart postgresql-9.3'
-
-    # Fedora services
-    alias sc='systemctl'
-    alias scstart='sudo systemctl start'
-    alias scstop='sudo systemctl stop'
-    alias screload='sudo systemctl reload'
-    alias screstart='sudo systemctl restart'
-
-    alias yu='sudo yum update'
+    if on_fedora; then
+        # PostgreSQL
+        alias pg_start='sudo systemctl start postgresql-9.3'
+        alias pg_stop='sudo systemctl stop postgresql-9.3'
+        alias pg_restart='sudo systemctl restart postgresql-9.3'
+        
+        # Fedora services
+        alias sc='systemctl'
+        alias scstart='sudo systemctl start'
+        alias scstop='sudo systemctl stop'
+        alias screload='sudo systemctl reload'
+        alias screstart='sudo systemctl restart'
+        
+        alias yu='sudo yum update'
+    elif on_ubuntu; then
+        alias au='sudo apt-get update && sudo apt-get upgrade'
+    fi
 
 fi

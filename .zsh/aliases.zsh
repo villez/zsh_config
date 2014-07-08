@@ -303,6 +303,7 @@ if on_linux; then
         
         alias yu='sudo yum update'
     elif on_ubuntu; then
+        alias ai='sudo apt-get install'
         alias au='sudo apt-get update && sudo apt-get upgrade'
     fi
 

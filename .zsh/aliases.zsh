@@ -300,7 +300,7 @@ if on_linux; then
         alias scstop='sudo systemctl stop'
         alias screload='sudo systemctl reload'
         alias screstart='sudo systemctl restart'
-        alias scstatus='sudo systemctl status'
+        alias scstatus='systemctl status'
 
         # Yum
         alias yi='sudo yum install'
@@ -317,7 +317,7 @@ if on_linux; then
         scstop() { sudo service $1 stop }
         screload() { sudo service $1 reload }
         screstart() { sudo service $1 restart }
-        scstatus() { sudo service $1 status } 
+        scstatus() { service $1 status } 
 
         # apt-get 
         alias ai='sudo apt-get install'

@@ -62,5 +62,7 @@ if on_osx; then
     export PATH="$PATH:/usr/local/sbin"
 
     # Perlbrew
-    source ~/perl5/perlbrew/etc/bashrc
+    if [ -d "$HOME/perl5/" ]; then
+        source ~/perl5/perlbrew/etc/bashrc
+    fi
 fi

@@ -48,6 +48,7 @@ zstyle '*' single-ignored show
 # custom completion definitions for the cdh() and cds() functions
 compdef "_directories -W ~ -/" cdh
 compdef "_directories -W ~/src -/" cds
+compdef "_files -W ~/bin/ -/" lw
 
 # git completion for aliases
 compdef g="git"

@@ -289,6 +289,7 @@ if on_linux; then
     alias df='df -H -x tmpfs -x devtmpfs'
 
     if on_fedora; then
+
         # PostgreSQL
         alias pg_start='sudo systemctl start postgresql-9.3'
         alias pg_stop='sudo systemctl stop postgresql-9.3'
@@ -300,11 +301,28 @@ if on_linux; then
         alias scstop='sudo systemctl stop'
         alias screload='sudo systemctl reload'
         alias screstart='sudo systemctl restart'
-        
+
+        alias yi='sudo yum install'
         alias yu='sudo yum update'
     elif on_ubuntu; then
+        # PostgreSQL
+        alias pg_start='sudo service postgresql start'
+        alias pg_stop='sudo service postgresql stop'
+        alias pg_restart='sudo service postgresql restart'
+        
+        # Ubuntu services
+        scstart() { sudo service $1 start }
+        scstop() { sudo service $1 stop }
+        screload() { sudo service $1 reload }
+        screstart() { sudo service $1 restart }
+
+        # apt-get 
         alias ai='sudo apt-get install'
         alias au='sudo apt-get update && sudo apt-get upgrade'
     fi
-
 fi
+
+alias pgrestart=pg_restart
+alias pgstop=pg_stop
+alias pgstart=pg_start
+    

@@ -31,24 +31,18 @@ else
     alias l='ls -laFh --color=always'
 fi
 
-alias lld='l -d */ | less'
-alias llh='l -d .* | less'
-alias lls='l -S | less'
-alias llt='l -t | less'
+# directory listing aliases
+alias lld='l -d */ | less'  # directories only
+alias llh='l -d .* | less'  # hidden files only
+alias lls='l -S | less'     # file size sorting
+alias llt='l -t | less'     # file modification time sorting
 
-# if no params given or param a directory -> pipe ls output to less;
-# if a non-directory param given, no paging 
+# function wrapper to do paging for directory listing, handling
+# possible command line file/directory parameters separately
 ll() {
     # if there are parameters
     if [ $# -gt 0 ]; then
-	# if a directory given
-	if [ -d $1 ]; then
-	    l $* | less
-	# some params were given, but not a directory
-	else
-	    l $*
-	fi
-    # no params given
+	l $* | less
     else
 	l | less
     fi
@@ -74,7 +68,7 @@ cdl() {
 }
 
 # cd into a given directory under ~ or ~/src/
-# note: completion for these defined in completion.zsh
+# note: directory completion for these defined in completion.zsh
 cdh() {
     cd ~/$1
 }

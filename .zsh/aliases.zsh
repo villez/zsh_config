@@ -34,19 +34,23 @@ fi
 # directory listing aliases
 alias lld='l -d */ | less'  # directories only
 alias llh='l -d .* | less'  # hidden files only
-alias lls='l -S | less'     # file size sorting
-alias llt='l -t | less'     # file modification time sorting
 
 # function wrapper to do paging for directory listing, handling
 # possible command line file/directory parameters separately
 ll() {
-    # if there are parameters
-    if [ $# -gt 0 ]; then
-	l $* | less
-    else
-	l | less
-    fi
+    l $* | less
 }
+
+# directory listing with file size sorting
+lls() {
+    l -S $* | less
+}
+
+# directory listing with file modification time sorting
+llt() {
+    l -t $* |less
+}
+
 
 # create new directory and cd into it
 take() {

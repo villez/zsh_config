@@ -105,6 +105,12 @@ lw() {
     fi
 }
 
+
+# start a Python simple HTTP web server in current directory
+shttp() {
+    python -m SimpleHTTPServer $*
+}
+
 # add a date to .rbcal
 rbcal-add() {
     echo $* >> ~/.rbcal
@@ -136,7 +142,8 @@ alias gcl='git clone'
 alias gco='git checkout'
 alias gcob='git checkout -b'
 alias gcof='git checkout -f'
-alias gl='git ls3'  # ls3 defined in .gitconfig
+alias gl='git ls3'  # ls3 is git log with custom format, defined in .gitconfig
+alias glh='git ls3 | head'
 alias gm='git merge'
 alias gp='git push'
 alias gpo='git push -u origin master'

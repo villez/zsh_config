@@ -45,22 +45,16 @@ export LESS="-eXFR"
 
 
 # setting up the path
-
-# add ~/bin
-export PATH="$PATH:$HOME/bin"
+export PATH="/usr/local/bin:/usr/local/sbin/:$PATH:$HOME/bin"
 
 # rbenv path + initialization
-
 if [ -d "$HOME/.rbenv" ]; then
     export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
 fi
 
-
 # OS X specific additions
 if on_osx; then
-    export PATH="$PATH:/usr/local/sbin"
-
     # Perlbrew
     if [ -d "$HOME/perl5/" ]; then
         source ~/perl5/perlbrew/etc/bashrc

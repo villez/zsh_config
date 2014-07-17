@@ -224,6 +224,10 @@ if on_osx; then
     # configure df to use human readable units and only show certain filesystem types
     alias df='df -H -T hfs,smbfs'
 
+    # accessing OS X clipboard from the shell
+    alias pbc='pbcopy'
+    alias pbp='pbpaste'
+
     # Homebrew related aliases
     alias bri='brew install'
     alias brin='brew info'

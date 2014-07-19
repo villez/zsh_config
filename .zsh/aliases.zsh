@@ -172,7 +172,7 @@ alias gx='git reset --hard && git clean -df'
 # note: noglob used because of rake, as zsh globbing clashes
 # with rake's task[params] command line argument format
 
-binstub_or_bundle_cmds=(spec rspec rails rake guard) # add more as becomes relevant
+binstub_or_bundle_cmds=(spec rspec rails rake guard spring) # add more as becomes relevant
 
 run_binstub_or_bundle_exec() {
     local cmdname=$1

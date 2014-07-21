@@ -53,10 +53,8 @@ if [ -d "$HOME/.rbenv" ]; then
     eval "$(rbenv init -)"
 fi
 
-# OS X specific additions
-if on_osx; then
-    # Perlbrew
-    if [ -d "$HOME/perl5/" ]; then
-        source ~/perl5/perlbrew/etc/bashrc
-    fi
+# Perlbrew
+if [ -d "$HOME/perl5/" ]; then
+    source ~/perl5/perlbrew/etc/bashrc
 fi
+

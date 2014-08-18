@@ -29,7 +29,7 @@ if on_osx; then
 fi
 
 # the GNU version; even though BSD/OS X ls uses the LSCOLORS version above,
-# export this one on OS X as well so we can reuse this for coloring zsh completions
+# export this one on OS X as well so we can reuse it for coloring zsh completions
 export LS_COLORS='rs=0:di=00;34:ln=00;35:mh=00:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=00;34:st=37;44:ex=00;32:'
 
 

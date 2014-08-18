@@ -11,7 +11,7 @@ alias ealias='ec $ZALIAS'
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
-alias rc='~/bin/rbcal'
+alias rc='rbcal'
 alias rd='rmdir'
 alias realias='source $ZALIAS'
 alias rez='source $HOME/.zshrc'
@@ -24,7 +24,8 @@ alias tarx='tar xvzf'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
 
-# handling the different color options between BSD/OSX vs GNU/Linux ls
+# handling the different color options between BSD/OS X vs GNU/Linux ls;
+# the color configuration is in exports.zsh
 if on_osx; then
     alias l='CLICOLOR_FORCE=1 ls -laGFh'
 else
@@ -52,10 +53,22 @@ llt() {
 }
 
 
+# list only directories from given dir
+lldd() {
+    cd $1
+    lld
+    cd -
+}
+
 # create new directory and cd into it
 take() {
     mkdir -p $1
     cd $1
+}
+
+# count files in the directory listing
+llc() {
+    ls -la $* | wc -l
 }
 
 # create a new directory, cd into it and initialize
@@ -80,17 +93,7 @@ cds() {
     cd ~/src/$1
 }
 
-# count files
-llc() {
-    ls -la $* | wc -l
-}
 
-# list only directories from given dir
-lldd() {
-    cd $1
-    lld
-    cd -
-}
 
 # Find the path to the first argument using which, then less it.
 # 'which' only searches the PATH for executables, so this is
@@ -242,21 +245,17 @@ if on_osx; then
     alias wifion='networksetup -setairportpower en0 on'    # see networksetup -lisetnetworkserviceorder
     alias wifirestart='wifioff; wifion'
     alias zzz='pmset sleepnow'
-
     
     # Qt Creator
     alias qtc='open ~/Qt5Latest/Qt\ Creator.app'
-
     
     # PostgreSQL
     alias pg_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_restart='pg_stop; pg_start'
-
     
     # vlc
     alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
-
     
     # Octopress: create a new post with given title, if any, and open it using
     # the "ec" emacsclient wrapper
@@ -331,6 +330,7 @@ if on_linux; then
         # apt-get 
         alias ai='sudo apt-get install'
         alias au='sudo apt-get update && sudo apt-get upgrade'
+        alias auu='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
     fi
 fi
 

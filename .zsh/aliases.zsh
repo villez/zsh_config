@@ -8,6 +8,7 @@ alias a-x='chmod a-x'
 alias du0='du -h -d0'
 alias du1='du -h -d1'
 alias ealias='ec $ZALIAS'
+alias git="/usr/local/bin/git"
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'

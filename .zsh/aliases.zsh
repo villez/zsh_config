@@ -8,7 +8,6 @@ alias a-x='chmod a-x'
 alias du0='du -h -d0'
 alias du1='du -h -d1'
 alias ealias='ec $ZALIAS'
-alias git="/usr/local/bin/git"
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
@@ -225,6 +224,10 @@ alias pgl='psql --list'
 # OS X specific aliases and functions
 #
 if on_osx; then
+    # alias git to Homebrew version on OS X as the stock version isn't kept
+    # up to date by Apple
+    alias git="/usr/local/bin/git"  
+    
     # configure df to use human readable units and only show certain filesystem types
     alias df='df -H -T hfs,smbfs'
 

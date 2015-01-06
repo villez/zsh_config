@@ -5,11 +5,12 @@ setopt no_beep
 setopt extended_glob
 
 # changing directories
-setopt autocd
-setopt auto_pushd
+setopt no_autocd
+setopt no_auto_pushd
 setopt pushd_ignore_dups
 setopt auto_name_dirs
-setopt cdable_vars
+setopt no_cdable_vars
+setopt auto_param_slash
 
 # history
 setopt append_history

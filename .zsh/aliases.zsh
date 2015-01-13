@@ -7,7 +7,7 @@ alias a+x='chmod a+x'
 alias a-x='chmod a-x'
 alias du0='du -h -d0'
 alias du1='du -h -d1'
-alias ealias='ec $ZALIAS'
+alias ealias='ec $ZALIAS'  # ec is an Emacs(client) wrapper script
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
@@ -212,12 +212,6 @@ alias nig='npm install -g'
 alias nl='npm ls'
 alias ns='npm search'
 alias nu='npm update'
-alias nug='npm update -g'
-alias nuu='npm update -g npm'
-
-# PostgreSQL
-alias pg='psql'
-alias pgl='psql --list'
 
 
 #
@@ -338,6 +332,9 @@ if on_linux; then
     fi
 fi
 
+# PostgreSQL - note OS-specific start/stop/restart aliases defined above
+alias pg='psql'
+alias pgl='psql --list'
 alias pgrestart=pg_restart
 alias pgstop=pg_stop
 alias pgstart=pg_start

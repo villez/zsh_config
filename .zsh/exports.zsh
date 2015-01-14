@@ -53,8 +53,3 @@ if [ -d "$HOME/.rbenv" ]; then
     eval "$(rbenv init -)"
 fi
 
-# Perlbrew
-if [ -d "$HOME/perl5/" ]; then
-    source ~/perl5/perlbrew/etc/bashrc
-fi
-

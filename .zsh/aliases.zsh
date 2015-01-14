@@ -52,7 +52,6 @@ llt() {
     l -t $* |less
 }
 
-
 # list only directories from given dir
 lldd() {
     cd $1
@@ -112,11 +111,6 @@ lw() {
 # start a Python simple HTTP web server in current directory
 shttp() {
     python -m SimpleHTTPServer $*
-}
-
-# add a date to .rbcal
-rbcal-add() {
-    echo $* >> ~/.rbcal
 }
 
 

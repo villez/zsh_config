@@ -5,6 +5,7 @@ alias cd..='cd ..'
 alias cd...='cd ../../'
 alias a+x='chmod a+x'
 alias a-x='chmod a-x'
+alias du='du -h'
 alias du0='du -h -d0'
 alias du1='du -h -d1'
 alias ealias='ec $ZALIAS'  # ec is an Emacs(client) wrapper script

@@ -8,13 +8,11 @@ alias a-x='chmod a-x'
 alias du='du -h'
 alias du0='du -h -d0'
 alias du1='du -h -d1'
-alias ealias='ec $ZALIAS'  # ec is an Emacs(client) wrapper script
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
 alias rc='rbcal'
 alias rd='rmdir'
-alias realias='source $ZALIAS'
 alias rez='source $HOME/.zshrc'
 alias rmf='rm -f'
 alias rmrf='rm -rf'
@@ -204,8 +202,6 @@ alias rdb='rake db:migrate && rake db:test:prepare'
 # npm related aliases
 alias ni='npm install'
 alias nig='npm install -g'
-alias nl='npm ls'
-alias ns='npm search'
 alias nu='npm update'
 
 
@@ -226,9 +222,6 @@ if on_osx; then
 
     # Homebrew related aliases
     alias bri='brew install'
-    alias brin='brew info'
-    alias brl='brew list'
-    alias brs='brew search'
     alias bru='brew upgrade'
     alias bruu='brew update'
 

@@ -1,47 +1,47 @@
-ZSH_THEME_GIT_PROMPT_UNTRACKED="*"
-ZSH_THEME_GIT_PROMPT_ADDED="+"
-ZSH_THEME_GIT_PROMPT_MODIFIED="*"
-ZSH_THEME_GIT_PROMPT_RENAMED="~"
-ZSH_THEME_GIT_PROMPT_DELETED="!"
-ZSH_THEME_GIT_PROMPT_UNMERGED="?"
-ZSH_THEME_GIT_PROMPT_AHEAD=">"
-ZSH_THEME_GIT_PROMPT_BEHIND="<"
+GIT_PROMPT_UNTRACKED="*"
+GIT_PROMPT_ADDED="+"
+GIT_PROMPT_MODIFIED="*"
+GIT_PROMPT_RENAMED="~"
+GIT_PROMPT_DELETED="!"
+GIT_PROMPT_UNMERGED="?"
+GIT_PROMPT_AHEAD=">"
+GIT_PROMPT_BEHIND="<"
 
 my_git_prompt_info() {
-    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    current_branch=$(git symbolic-ref HEAD 2> /dev/null) || return
     GIT_STATUS=$(git_prompt_status)
     [[ -n $GIT_STATUS ]] && GIT_STATUS=" $GIT_STATUS"
-    echo "\n(${ref#refs/heads/}$GIT_STATUS)"
+    echo "\n(${current_branch#refs/heads/}$GIT_STATUS)"
 }
 
 git_prompt_status() {
   INDEX=$(git status --porcelain 2> /dev/null)
   STATUS=""
   if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNTRACKED$STATUS"
+    STATUS="$GIT_PROMPT_UNTRACKED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
+    STATUS="$GIT_PROMPT_ADDED$STATUS"
   elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_ADDED$STATUS"
+    STATUS="$GIT_PROMPT_ADDED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    STATUS="$GIT_PROMPT_MODIFIED$STATUS"
   elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    STATUS="$GIT_PROMPT_MODIFIED$STATUS"
   elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_MODIFIED$STATUS"
+    STATUS="$GIT_PROMPT_MODIFIED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_RENAMED$STATUS"
+    STATUS="$GIT_PROMPT_RENAMED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
+    STATUS="$GIT_PROMPT_DELETED$STATUS"
   elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_DELETED$STATUS"
+    STATUS="$GIT_PROMPT_DELETED$STATUS"
   fi
   if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-    STATUS="$ZSH_THEME_GIT_PROMPT_UNMERGED$STATUS"
+    STATUS="$GIT_PROMPT_UNMERGED$STATUS"
   fi
 
   local ahead behind remote
@@ -52,10 +52,10 @@ git_prompt_status() {
 
   if [[ -n ${remote} ]] ; then
       ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-      (( $ahead )) && STATUS="$ZSH_THEME_GIT_PROMPT_AHEAD$STATUS"
+      (( $ahead )) && STATUS="$GIT_PROMPT_AHEAD$STATUS"
 
       behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-      (( $behind )) && STATUS="$ZSH_THEME_GIT_PROMPT_BEHIND$STATUS"
+      (( $behind )) && STATUS="$GIT_PROMPT_BEHIND$STATUS"
   fi
   echo $STATUS
 }

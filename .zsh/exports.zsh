@@ -1,19 +1,16 @@
-# check which platform we're on; used for some conditional
-# configurations - although trying to minimize those
+# general configuration exports and helper functions
 
+# Helper functions to check which platform we're on
+# Used for some conditional configurations - although trying to minimize those
 on_osx() { [[ $(uname) = 'Darwin' ]] }
 on_linux() { [[ $(uname) = 'Linux' ]] }
 on_fedora() { [[ $(lsb_release -si) = 'Fedora' ]] }
 on_ubuntu() { [[ $(lsb_release -si) = 'Ubuntu' ]] }
 
-export ZDOTDIR='~/.zsh'
-export ZALIAS=$ZDOTDIR/aliases.zsh
-
 # history
 export HISTSIZE=10000
 export SAVEHIST=10000
 export HISTFILE=~/.zsh_history
-
 
 # locale settings
 export LANG='en_US.UTF-8'
@@ -32,17 +29,12 @@ fi
 # export this one on OS X as well so we can reuse it for coloring zsh completions
 export LS_COLORS='rs=0:di=00;34:ln=00;35:mh=00:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=00;34:st=37;44:ex=00;32:'
 
-
-# tools
-
-export PAGER='less'
+# tool configuration
 export EDITOR='~/bin/ec'  # an emacsclient wrapper script
-
+export PAGER='less'
+export LESS="-eXFR"
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
-
-export LESS="-eXFR"
-
 
 # setting up the path
 export PATH="/usr/local/bin:/usr/local/sbin/:$PATH:$HOME/bin"
@@ -52,4 +44,3 @@ if [ -d "$HOME/.rbenv" ]; then
     export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
 fi
-

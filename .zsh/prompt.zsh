@@ -1,11 +1,15 @@
 git_prompt_info() {
-    local current_branch=$(git symbolic-ref HEAD 2> /dev/null) || return
-    local git_status=$(git_prompt_status)
-    [[ -n $git_status ]] && git_status="\n(${current_branch#refs/heads/} $git_status)"
+    local current_branch git_status
+    current_branch=$(git symbolic-ref HEAD 2> /dev/null) || return
+    git_status=$(git_status_in_symbols)
+    if [[ -n $git_status ]]; then  # if there is a nonempty status string, 
+        git_status=" $git_status"  # insert space before it (i.e. between branch name & the symbols)
+    fi
+    git_status="\n(${current_branch#refs/heads/}$git_status)"
     echo $git_status
 }
 
-git_prompt_status() {
+git_status_in_symbols() {
     local untracked="*"
     local added="+"
     local modified="*"

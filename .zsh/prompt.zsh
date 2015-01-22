@@ -1,62 +1,63 @@
-GIT_PROMPT_UNTRACKED="*"
-GIT_PROMPT_ADDED="+"
-GIT_PROMPT_MODIFIED="*"
-GIT_PROMPT_RENAMED="~"
-GIT_PROMPT_DELETED="!"
-GIT_PROMPT_UNMERGED="?"
-GIT_PROMPT_AHEAD=">"
-GIT_PROMPT_BEHIND="<"
-
-my_git_prompt_info() {
-    current_branch=$(git symbolic-ref HEAD 2> /dev/null) || return
-    GIT_STATUS=$(git_prompt_status)
-    [[ -n $GIT_STATUS ]] && GIT_STATUS=" $GIT_STATUS"
-    echo "\n(${current_branch#refs/heads/}$GIT_STATUS)"
+git_prompt_info() {
+    local current_branch=$(git symbolic-ref HEAD 2> /dev/null) || return
+    local git_status=$(git_prompt_status)
+    [[ -n $git_status ]] && git_status="\n(${current_branch#refs/heads/} $git_status)"
+    echo $git_status
 }
 
 git_prompt_status() {
-  INDEX=$(git status --porcelain 2> /dev/null)
-  STATUS=""
-  if $(echo "$INDEX" | grep '^?? ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_UNTRACKED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^A  ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_ADDED$STATUS"
-  elif $(echo "$INDEX" | grep '^M  ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_ADDED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^ M ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^AM ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_MODIFIED$STATUS"
-  elif $(echo "$INDEX" | grep '^ T ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_MODIFIED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^R  ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_RENAMED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^ D ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_DELETED$STATUS"
-  elif $(echo "$INDEX" | grep '^AD ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_DELETED$STATUS"
-  fi
-  if $(echo "$INDEX" | grep '^UU ' &> /dev/null); then
-    STATUS="$GIT_PROMPT_UNMERGED$STATUS"
-  fi
+    local untracked="*"
+    local added="+"
+    local modified="*"
+    local renamed="~"
+    local deleted="!"
+    local unmerged="?"
+    local ahead=">"
+    local behind="<"
 
-  local ahead behind remote
+    local index combined_status
 
-  remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
-      --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+    index=$(git status --porcelain 2> /dev/null)
+    combined_status=""
+    if $(echo "$index" | grep '^?? ' &> /dev/null); then
+        combined_status="$untracked$combined_status"
+    fi
+    if $(echo "$index" | grep '^A  ' &> /dev/null); then
+        combined_status="$added$combined_status"
+    elif $(echo "$index" | grep '^M  ' &> /dev/null); then
+        combined_status="$added$combined_status"
+    fi
+    if $(echo "$index" | grep '^ M ' &> /dev/null); then
+        combined_status="$modified$combined_status"
+    elif $(echo "$index" | grep '^AM ' &> /dev/null); then
+        combined_status="$modified$combined_status"
+    elif $(echo "$index" | grep '^ T ' &> /dev/null); then
+        combined_status="$modified$combined_status"
+    fi
+    if $(echo "$index" | grep '^R  ' &> /dev/null); then
+        combined_status="$renamed$combined_status"
+    fi
+    if $(echo "$index" | grep '^ D ' &> /dev/null); then
+        combined_status="$deleted$combined_status"
+    elif $(echo "$index" | grep '^AD ' &> /dev/null); then
+        combined_status="$deleted$combined_status"
+    fi
+    if $(echo "$index" | grep '^UU ' &> /dev/null); then
+        combined_status="$unmerged$combined_status"
+    fi
 
-  if [[ -n ${remote} ]] ; then
-      ahead=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-      (( $ahead )) && STATUS="$GIT_PROMPT_AHEAD$STATUS"
-
-      behind=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-      (( $behind )) && STATUS="$GIT_PROMPT_BEHIND$STATUS"
-  fi
-  echo $STATUS
+    local ahead_remote behind_remote remote_status
+    remote_status=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
+        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
+    
+    if [[ -n ${remote_status} ]] ; then
+        ahead_remote=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
+        (( $ahead_remote )) && combined_status="$ahead$combined_status"
+        
+        behind_remote=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
+        (( $behind_remote )) && combined_status="$behind$combined_status"
+    fi
+    echo $combined_status
 }
 
 
@@ -76,5 +77,5 @@ fi
 
 PROMPT='[$usercolor%n@%m:%{$reset_color%}'                  # user@host
 PROMPT+='$dircolor${PWD/#$HOME/~}%{$reset_color%}]'         # working directory
-PROMPT+='$gitcolor$(my_git_prompt_info)%{$reset_color%}'    # git status
+PROMPT+='$gitcolor$(git_prompt_info)%{$reset_color%}'       # git status
 PROMPT+='%% '                                               # trailing %

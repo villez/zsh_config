@@ -45,7 +45,6 @@ git_prompt_status() {
   fi
 
   local ahead behind remote
-  local -a gitstatus
 
   remote=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
       --symbolic-full-name 2>/dev/null)/refs\/remotes\/}

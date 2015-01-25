@@ -214,7 +214,7 @@ if on_osx; then
     alias git="/usr/local/bin/git"  
     
     # configure df to use human readable units and only show certain filesystem types
-    alias df='df -H -T hfs,smbfs'
+    alias df='df -P -T hfs,smbfs -H'
 
     # accessing OS X clipboard from the shell
     alias pbc='pbcopy'

@@ -33,44 +33,32 @@ git_status_in_symbols() {
 
     index=$(git status --porcelain 2> /dev/null)
     combined_status=""
-    if $(echo "$index" | grep '^?? ' &> /dev/null); then
-        combined_status="$untracked$combined_status"
+
+    if (( $(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l) )); then
+        combined_status+="$behind"
     fi
-    if $(echo "$index" | grep '^A  ' &> /dev/null); then
-        combined_status="$added$combined_status"
-    elif $(echo "$index" | grep '^M  ' &> /dev/null); then
-        combined_status="$added$combined_status"
-    fi
-    if $(echo "$index" | grep '^ M ' &> /dev/null); then
-        combined_status="$modified$combined_status"
-    elif $(echo "$index" | grep '^AM ' &> /dev/null); then
-        combined_status="$modified$combined_status"
-    elif $(echo "$index" | grep '^ T ' &> /dev/null); then
-        combined_status="$modified$combined_status"
-    fi
-    if $(echo "$index" | grep '^R  ' &> /dev/null); then
-        combined_status="$renamed$combined_status"
-    fi
-    if $(echo "$index" | grep '^ D ' &> /dev/null); then
-        combined_status="$deleted$combined_status"
-    elif $(echo "$index" | grep '^AD ' &> /dev/null); then
-        combined_status="$deleted$combined_status"
+    if (( $(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l) )); then
+        combined_status+="$ahead"
     fi
     if $(echo "$index" | grep '^UU ' &> /dev/null); then
-        combined_status="$unmerged$combined_status"
+        combined_status+="$unmerged"
+    fi
+    if $(echo "$index" | grep -e '^ D ' -e '^AD ' &> /dev/null); then
+        combined_status+="$deleted"
+    fi
+    if $(echo "$index" | grep '^R  ' &> /dev/null); then
+        combined_status+="$renamed"
+    fi
+    if $(echo "$index" | grep -e '^ M ' -e '^AM ' -e '^ T ' &> /dev/null); then
+        combined_status+="$modified"
+    fi
+    if $(echo "$index" | grep -e '^A  ' -e '^M  ' &> /dev/null); then
+        combined_status+="$added"
+    fi
+    if $(echo "$index" | grep '^?? ' &> /dev/null); then
+        combined_status+="$untracked"
     fi
 
-    local ahead_remote behind_remote remote_status
-    remote_status=${$(git rev-parse --verify ${hook_com[branch]}@{upstream} \
-        --symbolic-full-name 2>/dev/null)/refs\/remotes\/}
-    
-    if [[ -n ${remote_status} ]] ; then
-        ahead_remote=$(git rev-list ${hook_com[branch]}@{upstream}..HEAD 2>/dev/null | wc -l)
-        (( $ahead_remote )) && combined_status="$ahead$combined_status"
-        
-        behind_remote=$(git rev-list HEAD..${hook_com[branch]}@{upstream} 2>/dev/null | wc -l)
-        (( $behind_remote )) && combined_status="$behind$combined_status"
-    fi
     echo $combined_status
 }
 

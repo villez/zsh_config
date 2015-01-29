@@ -1,3 +1,7 @@
+# configuring the zsh completion system; this is currently something
+# of a black hole and in need of cleanup,to walk through which ones are
+# actually needed/used and whether the current config makes the most sense...
+
 autoload -U compinit
 compinit -i
 

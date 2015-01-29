@@ -1,7 +1,9 @@
-# general configuration exports and helper functions
+# general configuration exports such as PATH and default options for
+# other utility prorams
 
 # Helper functions to check which platform we're on
-# Used for some conditional configurations - although trying to minimize those
+# Used for some conditional configurations both in this file and others - although
+# trying to minimize platform-specific parts as much as feasible
 on_osx() { [[ $(uname) = 'Darwin' ]] }
 on_linux() { [[ $(uname) = 'Linux' ]] }
 on_fedora() { [[ $(lsb_release -si) = 'Fedora' ]] }

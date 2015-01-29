@@ -1,3 +1,5 @@
+# color definitions, currently only used in setting the prompt
+
 autoload colors; colors
 
 for COLOR in RED GREEN YELLOW BLUE MAGENTA CYAN BLACK WHITE; do

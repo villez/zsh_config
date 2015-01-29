@@ -1,3 +1,10 @@
+# A collection of utility aliases and simple functions. Some are
+# platform-specific (or customized based on platform), but most are
+# common. The main distinction is that functions are used when there's a need
+# to refer to the command-line arguments in one way or the other in the
+# definition, even if it's just pass-through to another command. 
+
+
 # general command aliases
 alias ..='cd ..'
 alias ...='cd ../../'

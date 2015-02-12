@@ -1,3 +1,5 @@
+# reference: http://zsh.sourceforge.net/Doc/Release/Options.html
+
 # quiet!
 setopt no_beep
 

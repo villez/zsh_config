@@ -2,7 +2,7 @@
 # platform-specific (or customized based on platform), but most are
 # common. The main distinction is that functions are used when there's a need
 # to refer to the command-line arguments in one way or the other in the
-# definition, even if it's just pass-through to another command. 
+# definition, even if it's just pass-through to another command.
 
 
 # general command aliases
@@ -218,8 +218,8 @@ alias nu='npm update'
 if on_osx; then
     # alias git to Homebrew version on OS X as the stock version isn't kept
     # up to date by Apple
-    alias git="/usr/local/bin/git"  
-    
+    alias git="/usr/local/bin/git"
+
     # configure df to use human readable units and only show certain filesystem types
     alias df='df -P -T hfs,smbfs -H'
 
@@ -238,18 +238,18 @@ if on_osx; then
     alias wifion='networksetup -setairportpower en0 on'    # see networksetup -lisetnetworkserviceorder
     alias wifirestart='wifioff; wifion'
     alias zzz='pmset sleepnow'
-    
+
     # Qt Creator
     alias qtc='open ~/Qt5Latest/Qt\ Creator.app'
-    
+
     # PostgreSQL
     alias pg_start='launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_stop='launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist'
     alias pg_restart='pg_stop; pg_start'
-    
+
     # vlc
     alias vlc='/Applications/VLC.app/Contents/MacOS/VLC'
-    
+
     # Octopress: create a new post with given title, if any, and open it using
     # the "ec" emacsclient wrapper
     bpn() {
@@ -294,7 +294,7 @@ if on_linux; then
         alias pg_start='sudo systemctl start postgresql-9.3'
         alias pg_stop='sudo systemctl stop postgresql-9.3'
         alias pg_restart='sudo systemctl restart postgresql-9.3'
-        
+
         # Fedora Systemd services
         alias sc='systemctl'
         alias scstart='sudo systemctl start'
@@ -312,15 +312,15 @@ if on_linux; then
         alias pg_start='sudo service postgresql start'
         alias pg_stop='sudo service postgresql stop'
         alias pg_restart='sudo service postgresql restart'
-        
+
         # Ubuntu init.d services
         scstart() { sudo service $1 start }
         scstop() { sudo service $1 stop }
         screload() { sudo service $1 reload }
         screstart() { sudo service $1 restart }
-        scstatus() { service $1 status } 
+        scstatus() { service $1 status }
 
-        # apt-get 
+        # apt-get
         alias ai='sudo apt-get install'
         alias au='sudo apt-get update && sudo apt-get upgrade'
         alias auu='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
@@ -333,4 +333,3 @@ alias pgl='psql --list'
 alias pgrestart=pg_restart
 alias pgstop=pg_stop
 alias pgstart=pg_start
-    

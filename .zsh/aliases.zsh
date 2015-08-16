@@ -71,9 +71,14 @@ take() {
     cd $1
 }
 
-# count files in the directory listing
+# Display the number of files/directories within the given directory/directories.
+# The -A and -1 ls options mean: include dotfiles except the . and .. directories, and
+# produce 1-column output => the number of lines is the number of entries, can
+# be counted easily with wc -l
+# If several directories are given as parameters, the result is the sum of the entries
+# in all of them.
 llc() {
-    ls -la $* | wc -l
+    ls -A1 $* | wc -l
 }
 
 # create a new directory, cd into it and initialize

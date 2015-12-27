@@ -221,6 +221,9 @@ alias nu='npm update'
 # OS X specific aliases and functions
 #
 if on_osx; then
+    # open a file or URL (given as parameter) with Chrome
+    alias chrome='open -a "Google Chrome"'
+
     # alias git to Homebrew version on OS X as the stock version isn't kept
     # up to date by Apple
     alias git="/usr/local/bin/git"

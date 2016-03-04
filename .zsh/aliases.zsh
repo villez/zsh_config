@@ -332,6 +332,12 @@ if on_linux; then
         alias ai='sudo apt-get install'
         alias au='sudo apt-get update && sudo apt-get upgrade'
         alias auu='sudo apt-get update && sudo apt-get upgrade && sudo apt-get dist-upgrade'
+
+        # Package information
+        alias pkg-all='dpkg --get-selections|grep -v deinstall|cut -f1'
+        alias pkg-for-file='dpkg -S'
+        alias pkg-info='dpkg -p'
+        alias pkg-list-files='dpkg -L'
     fi
 fi
 

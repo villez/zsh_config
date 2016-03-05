@@ -46,3 +46,7 @@ if [ -d "$HOME/.rbenv" ]; then
     export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
     eval "$(rbenv init -)"
 fi
+
+# nvm initialization
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"

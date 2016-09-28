@@ -104,15 +104,25 @@ cds() {
 }
 
 
-
-# Find the path to the first argument using which, then less it.
-# 'which' only searches the PATH for executables, so this is
-# mainly useful for viewing scripts without typing the full dirname
-# Note: be careful with binary files and less options...
+# A convenience function to display the contents of a given command,
+# without having to remember whether it's an alias, shell function,
+# shell script etc.
+#
+# Note that there is no guard against binary files in this, so you
+# have to be mindful to answer "n" yourself when less asks you whether
+# to display a binary file!
 lw() {
-    local f=$(which $1)
-    if [ -e $f ]; then
-        less $f
+    t=$(whence -w $1)
+    if [ $t =~ 'builtin' ]; then
+        type $1
+    elif [ $t =~ 'function' ]; then
+        type $1
+        echo
+        type -f $1
+    elif [ $t =~ 'alias' ]; then
+         type -f $1
+    elif [ $t =~ 'command' ]; then
+        less $(whence $1)
     else
         echo "$1 not found"
     fi

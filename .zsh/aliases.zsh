@@ -113,15 +113,15 @@ cds() {
 # to display a binary file!
 lw() {
     t=$(whence -w $1)
-    if [ $t =~ 'builtin' ]; then
+    if [[ $t =~ 'builtin' ]]; then
         type $1
-    elif [ $t =~ 'function' ]; then
+    elif [[ $t =~ 'function' ]]; then
         type $1
         echo
         type -f $1
-    elif [ $t =~ 'alias' ]; then
+    elif [[ $t =~ 'alias' ]]; then
          type -f $1
-    elif [ $t =~ 'command' ]; then
+    elif [[ $t =~ 'command' ]]; then
         less $(whence $1)
     else
         echo "$1 not found"

@@ -47,6 +47,11 @@ if [ -d "$HOME/.rbenv" ]; then
     eval "$(rbenv init -)"
 fi
 
+# add Chef Development Kit to path
+if [ -d "/opt/chefdk/bin" ]; then
+    export PATH="/opt/chefdk/bin:$PATH"
+fi
+
 # nvm initialization
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"

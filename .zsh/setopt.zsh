@@ -1,5 +1,8 @@
 # reference: http://zsh.sourceforge.net/Doc/Release/Options.html
 
+# prevent stdout redirection from accidentally overwriting an existing file
+setopt no_clobber
+
 # quiet!
 setopt no_beep
 

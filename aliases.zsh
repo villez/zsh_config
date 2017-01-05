@@ -224,6 +224,8 @@ alias rdb='rake db:migrate && rake db:test:prepare'
 # npm related aliases
 alias ni='npm install'
 alias nig='npm install -g'
+alias nis='npm install --save'
+alias nisd='npm install --save-dev'
 alias nu='npm update'
 
 

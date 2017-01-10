@@ -104,25 +104,29 @@ cds() {
 }
 
 
-# A convenience function to display the contents of a given command,
-# without having to remember whether it's an alias, shell function,
-# shell script etc.
-#
-# Note that there is no guard against binary files in this, so you
-# have to be mindful to answer "n" yourself when less asks you whether
-# to display a binary file!
+# A convenience function to display a given command's contents, if possible,
+# without having to remember whether it's an alias, a shell function,
+# a shell script etc.
 lw() {
-    t=$(whence -w $1)
-    if [[ $t =~ 'builtin' ]]; then
+    cmdtype=$(whence -w $1)
+    if [[ $cmdtype =~ 'builtin' ]]; then
         type $1
-    elif [[ $t =~ 'function' ]]; then
+    elif [[ $cmdtype =~ 'function' ]]; then
         type $1
         echo
         type -f $1
-    elif [[ $t =~ 'alias' ]]; then
+    elif [[ $cmdtype =~ 'alias' ]]; then
          type -f $1
-    elif [[ $t =~ 'command' ]]; then
-        less $(whence $1)
+    elif [[ $cmdtype =~ 'command' ]]; then
+        # checking the executable file's type using the "file" command
+        # to avoid trying to output binaries
+        filetype=$(file $(whence -c $1))
+        if [[ $filetype =~ 'text executable' ]]; then
+            echo "script: $(whence $1)\n"
+            less $(whence $1)
+        else
+            echo "binary executable: $(whence $1)"
+        fi
     else
         echo "$1 not found"
     fi

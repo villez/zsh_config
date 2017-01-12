@@ -255,6 +255,7 @@ if on_osx; then
     alias bri='brew install'
     alias bru='brew upgrade'
     alias bruu='brew update'
+    alias brc='brew cleanup -s'
 
     # Macbook and OS X low level stuff, may change with hardware/OS versions
     alias batterycheck='ioreg -l -w0 | grep Capacity  | cut -d"|" -f3 | tr -s " "'

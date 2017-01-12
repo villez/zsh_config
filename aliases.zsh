@@ -251,6 +251,9 @@ if on_osx; then
     alias pbc='pbcopy'
     alias pbp='pbpaste'
 
+    # quick look preview a file from the command line
+    alias ql='qlmanage -p 2>/dev/null'
+
     # Homebrew related aliases
     alias bri='brew install'
     alias bru='brew upgrade'

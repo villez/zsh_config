@@ -121,11 +121,11 @@ lw() {
         # checking the executable file's type using the "file" command
         # to avoid trying to output binaries
         filetype=$(file $(whence -c $1))
-        if [[ $filetype =~ 'text executable' ]]; then
+        if [[ $filetype =~ 'text executable' ]] || [[ $filetype =~ 'ASCII' ]]; then
             echo "script: $(whence $1)\n"
             less $(whence $1)
         else
-            echo "binary executable: $(whence $1)"
+            echo "unrecognized/binary file: $(whence $1)"
         fi
     else
         echo "$1 not found"

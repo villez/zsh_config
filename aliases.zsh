@@ -114,16 +114,20 @@ lw() {
     elif [[ $cmdtype =~ 'function' ]]; then
         type $1
         echo
-        type -f $1
+        type -f $1 | less
     elif [[ $cmdtype =~ 'alias' ]]; then
-         type -f $1
+         type -f $1 | less
     elif [[ $cmdtype =~ 'command' ]]; then
         # checking the executable file's type using the "file" command
         # to avoid trying to output binaries
-        filetype=$(file $(whence -c $1))
-        if [[ $filetype =~ 'text executable' ]] || [[ $filetype =~ 'ASCII' ]]; then
-            echo "script: $(whence $1)\n"
-            less $(whence $1)
+        filetype=$(file -L $(whence -c $1))
+        if [[ $filetype =~ 'text executable' ]] ||
+               [[ $filetype =~ 'ASCII' ]] ||
+               [[ $filetype =~ 'UTF-8' ]]; then
+            {
+                echo "$(tput bold)script: $(whence $1)$(tput sgr0)\n";
+                cat $(whence $1);
+            } | less
         else
             echo "unrecognized/binary file: $(whence $1)"
         fi

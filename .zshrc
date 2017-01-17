@@ -1,6 +1,5 @@
 source ~/.zsh/exports.zsh
 source ~/.zsh/setopt.zsh
-source ~/.zsh/colors.zsh
 source ~/.zsh/git_prompt.zsh
 source ~/.zsh/prompt.zsh
 source ~/.zsh/completion.zsh

@@ -41,17 +41,7 @@ export GREP_COLOR='1;32'
 # setting up the path
 export PATH="/usr/local/bin:/usr/local/sbin/:$PATH:$HOME/bin"
 
-# rbenv path + initialization
-if [ -d "$HOME/.rbenv" ]; then
-    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
-    eval "$(rbenv init -)"
-fi
-
 # add Chef Development Kit to path
 if [ -d "/opt/chefdk/bin" ]; then
     export PATH="/opt/chefdk/bin:$PATH"
 fi
-
-# nvm initialization
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"

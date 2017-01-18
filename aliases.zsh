@@ -18,7 +18,6 @@ alias du1='du -h -d1'
 alias history='fc -l 1'
 alias md='mkdir -pv'
 alias q='exit'
-alias rc='rbcal'
 alias rd='rmdir'
 alias rez='source $HOME/.zshrc'
 alias rmf='rm -f'
@@ -29,6 +28,7 @@ alias tart='tar tvzf'
 alias tarx='tar xvzf'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
+alias vc='vscal'
 
 # handling the different color options between BSD/OS X vs GNU/Linux ls;
 # the color configuration is in exports.zsh

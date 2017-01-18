@@ -1,14 +1,6 @@
 # general configuration exports such as PATH and default options for
 # other utility prorams
 
-# Helper functions to check which platform we're on
-# Used for some conditional configurations both in this file and others - although
-# trying to minimize platform-specific parts as much as feasible
-on_osx() { [[ $(uname) = 'Darwin' ]] }
-on_linux() { [[ $(uname) = 'Linux' ]] }
-on_fedora() { [[ $(lsb_release -si) = 'Fedora' ]] }
-on_ubuntu() { [[ $(lsb_release -si) = 'Ubuntu' ]] }
-
 # history
 export HISTSIZE=10000
 export SAVEHIST=10000
@@ -19,16 +11,10 @@ export LANG='en_US.UTF-8'
 export LC_CTYPE='fi_FI.UTF-8'
 export LC_COLLATE=C
 
-# configuring colors for ls; different format for BSD/OSX and GNU/Linux versions
-# the two configs here are currently not 1:1 in all details but match well enough
-# for the most important cases - normal files, directories, executables, symlinks
-if on_osx; then
-    export CLICOLOR=1
-    export LSCOLORS="exfxcxdxcxegedabagexex"
-fi
 
-# the GNU version; even though BSD/OS X ls uses the LSCOLORS version above,
-# export this one on OS X as well so we can reuse it for coloring zsh completions
+# the GNU version of color configuration for ls; even though BSD/OS X ls uses the LSCOLORS
+# version (defined in osx.zsh), this is included for both platforms so it can be
+# reused for coloring zsh completions
 export LS_COLORS='rs=0:di=00;34:ln=00;35:mh=00:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=00;34:st=37;44:ex=00;32:'
 
 # tool configuration

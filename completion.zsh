@@ -48,20 +48,3 @@ zstyle ':completion:*:scp:*' group-order files all-files users hosts-domain host
 zstyle ':completion:*:ssh:*' tag-order users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
 zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host users hosts-ipaddr
 zstyle '*' single-ignored show
-
-# custom completion definitions for the cdh() and cds() functions
-compdef "_directories -W ~ -/" cdh
-compdef "_directories -W ~/src -/" cds
-compdef "_files -W ~/bin/ -/" lw
-
-# git completion for aliases
-compdef g="git"
-compdef _git ga=git-add
-compdef _git gb=git-branch
-compdef _git gc=git-commit
-compdef _git gco=git-checkout
-compdef _git gcl=git-clone
-compdef _git gm=git-merge
-compdef _git gp=git-push
-compdef _git gpl=git-pull
-compdef _git gr=git-remote

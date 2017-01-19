@@ -71,6 +71,13 @@ take() {
     cd $1
 }
 
+# create a new directory, cd into it and initialize
+# an empty git repo
+takeg() {
+    take $1
+    git init
+}
+
 # Display the number of files/directories within the given directory/directories.
 # The -A and -1 ls options mean: include dotfiles except the . and .. directories, and
 # produce 1-column output => the number of lines is the number of entries, can
@@ -79,13 +86,6 @@ take() {
 # in all of them.
 llc() {
     ls -A1 $* | wc -l
-}
-
-# create a new directory, cd into it and initialize
-# an empty git repo
-takeg() {
-    take $1
-    git init
 }
 
 # cd into directory and list it
@@ -102,6 +102,10 @@ cdh() {
 cds() {
     cd ~/src/$1
 }
+
+# custom completion definitions for the cdh() and cds() functions
+compdef "_directories -W ~ -/" cdh
+compdef "_directories -W ~/src -/" cds
 
 
 # A convenience function to display a given command's contents, if possible,
@@ -135,6 +139,8 @@ lw() {
         echo "$1 not found"
     fi
 }
+
+compdef "_files -W ~/bin/ -/" lw
 
 
 # start a Python simple HTTP web server in current directory

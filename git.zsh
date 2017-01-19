@@ -39,3 +39,15 @@ alias grv='git remote -v'
 alias grh='git reset --hard'
 alias gus='git reset HEAD --'
 alias gx='git reset --hard && git clean -df'
+
+# git completion for aliases
+compdef g="git"
+compdef _git ga=git-add
+compdef _git gb=git-branch
+compdef _git gc=git-commit
+compdef _git gco=git-checkout
+compdef _git gcl=git-clone
+compdef _git gm=git-merge
+compdef _git gp=git-push
+compdef _git gpl=git-pull
+compdef _git gr=git-remote

@@ -28,7 +28,6 @@ alias tart='tar tvzf'
 alias tarx='tar xvzf'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
-alias vc='vscal'
 
 # handling the different color options between BSD/OS X vs GNU/Linux ls;
 # the color configuration is in exports.zsh
@@ -149,7 +148,6 @@ shttp() {
 }
 
 
-
 # PostgreSQL - note OS-specific start/stop/restart aliases defined in the
 # osx.zsh and linux.zsh files
 alias pg='psql'
@@ -157,3 +155,9 @@ alias pgl='psql --list'
 alias pgrestart=pg_restart
 alias pgstop=pg_stop
 alias pgstart=pg_start
+
+
+# aliases for nonstandard/custom/private tools
+alias vc='vscal'
+alias fd='dupes'
+alias fdr='dupes -r'

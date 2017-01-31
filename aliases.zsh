@@ -29,6 +29,8 @@ alias tarx='tar xvzf'
 alias topc='top -o cpu'
 alias treed='tree -d --charset=utf-16 -C'
 
+compdef "_directories" du
+
 # handling the different color options between BSD/OS X vs GNU/Linux ls;
 # the color configuration is in exports.zsh
 if on_osx; then
@@ -139,7 +141,7 @@ lw() {
     fi
 }
 
-compdef "_files -W ~/bin/ -/" lw
+compdef "_path_commands" lw
 
 
 # start a Python simple HTTP web server in current directory

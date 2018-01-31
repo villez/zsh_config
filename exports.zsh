@@ -25,9 +25,12 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 
 # setting up the path
-export PATH="/usr/local/bin:/usr/local/sbin/:$PATH:$HOME/bin"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH:$HOME/bin"
 
 # add Chef Development Kit to path
 if [ -d "/opt/chefdk/bin" ]; then
     export PATH="/opt/chefdk/bin:$PATH"
 fi
+
+# add Rust toolchain to path
+export PATH="$HOME/.cargo/bin:$PATH"
